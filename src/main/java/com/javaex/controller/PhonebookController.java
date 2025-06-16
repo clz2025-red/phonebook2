@@ -3,6 +3,7 @@ package com.javaex.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,13 +31,14 @@ public class PhonebookController extends HttpServlet {
 		
 		System.out.println(personList);
 		
-		//html + list
+		//저밑에 있는 list.jsp에게 후반일 html을 만들고 응답문서 만들어 보낸다
+		//1)request객체에 데이터를 넣어준다
+		request.setAttribute("pList", personList);
 		
-		
-		//응답문서 바디 추가한다
-		
-		
-		
+		//2)list.jsp에 request객체와 response객체를 보낸다
+		//*포워드
+		RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
+		rd.forward(request, response);
 		
 	}
 
