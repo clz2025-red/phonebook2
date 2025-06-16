@@ -65,13 +65,13 @@ public class PhonebookDAO {
 	}
 	
 	// 전체리스트 가져오기
-	public void personSelect() {
+	public List<PersonVO> personSelect() {
 		
 		//리스트준비
 		List<PersonVO> personList = new ArrayList<PersonVO>();
 		
 		this.connect();
-		
+		System.out.println("personSelect()");
 		try {
 			//3. SQL문준비 / 바인딩 / 실행
 			// SQL문준비
@@ -110,8 +110,8 @@ public class PhonebookDAO {
 		
 		this.close();
 		
+		return personList;
+		
 	}
-	
-	
 	
 }

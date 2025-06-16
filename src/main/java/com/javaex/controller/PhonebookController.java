@@ -1,11 +1,16 @@
 package com.javaex.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.javaex.dao.PhonebookDAO;
+import com.javaex.vo.PersonVO;
 
 
 @WebServlet("/pbc")
@@ -23,8 +28,7 @@ public class PhonebookController extends HttpServlet {
 		PhonebookDAO phonebookDAO = new PhonebookDAO();
 		List<PersonVO> personList = phonebookDAO.personSelect();
 		
-		
-		
+		System.out.println(personList);
 		
 		//html + list
 		
