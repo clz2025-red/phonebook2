@@ -30,8 +30,8 @@ public class PhonebookController extends HttpServlet {
 		String action = request.getParameter("action");
 		System.out.println(action); //업무구분
 				
-		if("list".equals(action)) {
-			//리스트//////////////////////////////////////////////////////////////
+		if("list".equals(action)) { //리스트업무
+			System.out.println("리스트");
 			
 			//db데이터가져온다  --> list
 			PhonebookDAO phonebookDAO = new PhonebookDAO();
@@ -47,16 +47,17 @@ public class PhonebookController extends HttpServlet {
 			//*포워드
 			RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
 			rd.forward(request, response);
-			
-			////////////////////////////////////////////////////////////////////
 		
-		}else if("wform".equals(action)) {
-			
-			//등록폼//////////////////////////////////////////////////////////////
+		}else if("wform".equals(action)) { //등록폼업무
 			System.out.println("등록폼");
-			
+	
 			//등록폼을 응답해야한다
-			/////////////////////////////////////////////////////////////////////
+			//1)DB관련 할일이 없다 - 안하면된다
+			
+			//2)jsp에게 화면을 그리게 한다(포워드)
+			//writeForm.jsp 포워드한다
+			RequestDispatcher rd = request.getRequestDispatcher("/writeForm.jsp");
+			rd.forward(request, response);
 		
 		}else if(action == "mform") {
 			
