@@ -58,13 +58,7 @@
 		  }	
 		%>
 		
-		[주소록 작성폼 이동] : 주소창에 <br>
-		http://localhost:8080/phonebook2/pbc?action=wform
-		
-		<br>입력하시고 엔터입력
-		<br>
-		<a href="http://localhost:8080/phonebook2/pbc?action=wform">주소록 작성폼 이동</a>
-		
+		<a href="http://localhost:8080/phonebook2/pbc?action=wform">등록폼 이동</a>
 	
 	</body>
 </html>
