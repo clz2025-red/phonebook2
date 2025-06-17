@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+
 <%@ page import="java.util.List" %>
 <%@ page import="com.javaex.vo.PersonVO" %>
 
@@ -45,7 +47,9 @@
 		  }	
 		%>
 		
-		
+		[주소록 작성폼 이동] : 주소창에 aaa.html 입력하시고 엔터입력
+		<br>
+		<a href="/aaa.html">주소록 작성폼 이동</a>
 		
 	
 	</body>
