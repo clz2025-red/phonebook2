@@ -48,7 +48,7 @@ public class PhonebookController extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
 			rd.forward(request, response);
 		
-		}else if("wform".equals(action)) { //등록폼업무
+		}else if("wform".equals(action)) { //등록폼업무  (등록업무랑 구별할것)
 			System.out.println("등록폼");
 	
 			//등록폼을 응답해야한다
@@ -59,11 +59,57 @@ public class PhonebookController extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/writeForm.jsp");
 			rd.forward(request, response);
 		
-		}else if(action == "mform") {
+		}else if("write".equals(action) ) { //등록업무
+			System.out.println("등록");
 			
-			//수정폼
+			//파라미터3개 꺼내기
+			String name = request.getParameter("name");
+			String hp =  request.getParameter("hp");
+			String company = request.getParameter("company");
+			
+			//데이터를 묶는다
+			PersonVO personVO = new PersonVO(name, hp, company);
+			System.out.println(personVO);
+			
+			//DAO를 통해서 저장시키기
+			PhonebookDAO phonebookDAO= new PhonebookDAO();
+			phonebookDAO.personInsert(personVO);
+			
+			// 리다리엑트  list 요청해주세요
+			// http://localhost:8080/phonebook2/pbc?action=list 
+			
+			//리다이렉트
+			response.sendRedirect("http://localhost:8080/phonebook2/pbc?action=list");
+			
+			
+			//응답 (리스트 ) 하기 ----이거 안씀 리다이렉트 사용-------------------------------
+			//-- dao시켜서 데이터 가져오기
+			/*
+			List<PersonVO> personList = phonebookDAO.personSelect();
+			
+			//1)request객체에 데이터를 넣어준다
+			request.setAttribute("pList", personList);
+			
+			//2)list.jsp에 request객체와 response객체를 보낸다
+			
+			//*포워드
+			RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
+			rd.forward(request, response);
+			*/
+		}else if("delete".equals(action)) {
+			System.out.println("삭제");
+			
+			//파라미터에서  no 꺼내온다
+			int no =  Integer.parseInt(request.getParameter("no"));
+			
+			//dao를 통해서 no를 주고 삭제
+			PhonebookDAO phonebookDAO= new PhonebookDAO();
+			phonebookDAO.personDelete(no);
+			
+			//리다이렉트 action=list
+			//response.sendRedirect("http://localhost:8080/phonebook2/pbc?action=list");
+			
 		}
-		
 		
 		
 		

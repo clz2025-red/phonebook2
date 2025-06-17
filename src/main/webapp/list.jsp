@@ -39,7 +39,12 @@
 					<tr>
 						<td>회사(company)</td>
 						<td><%= personList.get(i).getCompany() %></td>
-					<tr>		
+					<tr>	
+					<tr>
+						<td>[수정폼으로 이동]</td>
+						<td><a href="http://localhost:8080/phonebook2/pbc?action=delete&no=3">[삭제]</a></td>   <!-- 원래 버튼으로 해야된다 js필요 안배워서 a태그로 구현 -->
+					<tr>	
+						
 				</tbody>
 			</table>  
 			<br>
@@ -47,9 +52,12 @@
 		  }	
 		%>
 		
-		[주소록 작성폼 이동] : 주소창에 aaa.html 입력하시고 엔터입력
+		[주소록 작성폼 이동] : 주소창에 <br>
+		http://localhost:8080/phonebook2/pbc?action=wform
+		
+		<br>입력하시고 엔터입력
 		<br>
-		<a href="/aaa.html">주소록 작성폼 이동</a>
+		<a href="http://localhost:8080/phonebook2/pbc?action=wform">주소록 작성폼 이동</a>
 		
 	
 	</body>

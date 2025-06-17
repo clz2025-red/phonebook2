@@ -23,7 +23,8 @@ create table person(
 select 	person_id,
 		name,
         hp,
-        company
+        com
+        pany
 from person
 order by person_id desc
 ;
