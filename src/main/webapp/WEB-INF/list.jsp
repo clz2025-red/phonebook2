@@ -5,6 +5,7 @@
 <%@ page import="com.javaex.vo.PersonVO" %>
 
 <% 
+
 	List<PersonVO> personList = (List<PersonVO>)request.getAttribute("pList");
 %>
 

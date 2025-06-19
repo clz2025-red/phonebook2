@@ -41,7 +41,7 @@ public class PhonebookController extends HttpServlet {
 			request.setAttribute("pList", personList);
 			
 			//*포워드
-			WebUtil.forward(request, response, "/list.jsp");
+			WebUtil.forward(request, response, "/WEB-INF/list.jsp");
 			
 		
 		}else if("wform".equals(action)) { //등록폼업무  (등록업무랑 구별할것)
@@ -52,7 +52,7 @@ public class PhonebookController extends HttpServlet {
 			
 			//2)jsp에게 화면을 그리게 한다(포워드)
 			//writeForm.jsp 포워드한다
-			WebUtil.forward(request, response, "/writeForm.jsp");
+			WebUtil.forward(request, response, "/WEB-INF/writeForm.jsp");
 		
 		}else if("write".equals(action) ) { //등록업무
 			System.out.println("등록");
@@ -102,7 +102,7 @@ public class PhonebookController extends HttpServlet {
 			request.setAttribute("pVO", personVO);
 			
 			//포워드
-			WebUtil.forward(request, response, "/modifyForm.jsp");
+			WebUtil.forward(request, response, "/WEB-INF/modifyForm.jsp");
 			
 		
 		}else if("modify".equals(action)) {
