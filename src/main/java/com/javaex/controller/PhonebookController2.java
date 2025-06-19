@@ -11,12 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.javaex.dao.PhonebookDAO;
-import com.javaex.util.WebUtil;
 import com.javaex.vo.PersonVO;
 
 
-@WebServlet("/pbc")
-public class PhonebookController extends HttpServlet {
+@WebServlet("/pbc2")
+public class PhonebookController2 extends HttpServlet {
 	//필드
 	private static final long serialVersionUID = 1L;
        
@@ -38,11 +37,14 @@ public class PhonebookController extends HttpServlet {
 			PhonebookDAO phonebookDAO = new PhonebookDAO();
 			List<PersonVO> personList = phonebookDAO.personSelect();
 			
+			//저밑에 있는 list.jsp에게 후반일 html을 만들고 응답문서 만들어 보낸다
+			//1)request객체에 데이터를 넣어준다
 			request.setAttribute("pList", personList);
 			
+			//2)list.jsp에 request객체와 response객체를 보낸다
 			//*포워드
-			WebUtil.forward(request, response, "/list.jsp");
-			
+			RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
+			rd.forward(request, response);
 		
 		}else if("wform".equals(action)) { //등록폼업무  (등록업무랑 구별할것)
 			System.out.println("등록폼");
@@ -52,7 +54,8 @@ public class PhonebookController extends HttpServlet {
 			
 			//2)jsp에게 화면을 그리게 한다(포워드)
 			//writeForm.jsp 포워드한다
-			WebUtil.forward(request, response, "/writeForm.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/writeForm.jsp");
+			rd.forward(request, response);
 		
 		}else if("write".equals(action) ) { //등록업무
 			System.out.println("등록");
@@ -73,8 +76,23 @@ public class PhonebookController extends HttpServlet {
 			// http://localhost:8080/phonebook2/pbc?action=list 
 			
 			//리다이렉트
-			WebUtil.redirect(request, response, "/phonebook2/pbc?action=list");
+			response.sendRedirect("http://localhost:8080/phonebook2/pbc?action=list");
 			
+			
+			//응답 (리스트 ) 하기 ----이거 안씀 리다이렉트 사용-------------------------------
+			//-- dao시켜서 데이터 가져오기
+			/*
+			List<PersonVO> personList = phonebookDAO.personSelect();
+			
+			//1)request객체에 데이터를 넣어준다
+			request.setAttribute("pList", personList);
+			
+			//2)list.jsp에 request객체와 response객체를 보낸다
+			
+			//*포워드
+			RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
+			rd.forward(request, response);
+			*/
 		}else if("delete".equals(action)) {
 			System.out.println("삭제");
 			
@@ -86,7 +104,7 @@ public class PhonebookController extends HttpServlet {
 			phonebookDAO.personDelete(no);
 			
 			//리다이렉트 action=list
-			WebUtil.redirect(request, response, "/phonebook2/pbc?action=list");
+			response.sendRedirect("http://localhost:8080/phonebook2/pbc?action=list");
 			
 		}else if("mform".equals(action)) {
 			System.out.println("수정폼");
@@ -102,8 +120,8 @@ public class PhonebookController extends HttpServlet {
 			request.setAttribute("pVO", personVO);
 			
 			//포워드
-			WebUtil.forward(request, response, "/modifyForm.jsp");
-			
+			RequestDispatcher rd = request.getRequestDispatcher("/modifyForm.jsp");
+			rd.forward(request, response);
 		
 		}else if("modify".equals(action)) {
 			System.out.println("수정");
@@ -122,7 +140,7 @@ public class PhonebookController extends HttpServlet {
 			phonebookDAO.personUpdate(personVO);
 			
 			//리다이렉트 action=list
-			WebUtil.redirect(request, response, "/phonebook2/pbc?action=list");
+			response.sendRedirect("http://localhost:8080/phonebook2/pbc?action=list");
 			
 		}
 		

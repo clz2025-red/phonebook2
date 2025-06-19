@@ -6,8 +6,6 @@
 
 <% 
 	List<PersonVO> personList = (List<PersonVO>)request.getAttribute("pList");
-	System.out.println("여기는jsp");
-	System.out.println(personList);
 %>
 
 
@@ -43,7 +41,11 @@
 						<td><%= personList.get(i).getCompany() %></td>
 					<tr>	
 					<tr>
-						<td>[수정폼으로 이동]</td>
+						<td>
+							<a href="http://localhost:8080/phonebook2/pbc?action=mform&no=<%= personList.get(i).getPersonId() %>">
+								[수정폼으로 이동]
+							</a>		
+						</td>
 						<td>
 							<a href="http://localhost:8080/phonebook2/pbc?action=delete&no=<%= personList.get(i).getPersonId() %>">
 								[삭제] <%= personList.get(i).getPersonId() %>

@@ -19,15 +19,24 @@ create table person(
     company 	varchar(20)
 );
 
--- 테이블조회
+-- 조회
 select 	person_id,
 		name,
         hp,
-        com
-        pany
+        company
 from person
 order by person_id desc
 ;
+
+select 	person_id,
+		name,
+        hp,
+        company
+from person
+where person_id = 1
+;
+
+
 
 -- 등록
 insert into person
@@ -47,7 +56,7 @@ update person
 set name = '서장훈',
 	hp = '010-3333-33333',
 	company = '02-3333-3333'
-where person_id = 3
+where person_id = 1
 ;
 
 -- 삭제
